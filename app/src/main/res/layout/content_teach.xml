@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_teach"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ca.induja.hourofregex.TeachActivity"
+    tools:showIn="@layout/app_bar_teach"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/LessonFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="ca.induja.hourofregex.LessonFragment"
+                tools:layout="@layout/fragment_lesson"/>
+
+            <fragment
+                android:id="@+id/ExerciseFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="ca.induja.hourofregex.ExerciseFragment"
+                tools:layout="@layout/fragment_exercise"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:onClick="onNextPressed"
+        android:text="@string/button_next"/>
+</RelativeLayout>

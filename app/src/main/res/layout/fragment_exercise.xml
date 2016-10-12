@@ -1,0 +1,58 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal|bottom"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:padding="0dp"
+        android:textColor="@color/black"/>
+
+    <TableLayout
+        android:id="@+id/search_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:padding="10dp"
+        android:layout_gravity="start"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+    <!--android:background="@color/blue"-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/regex_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            android:hint="@string/regex_input_hint"
+            android:textColor="@color/black"
+            android:nextFocusUp="@id/regex_input"
+            android:nextFocusLeft="@id/regex_input"/>
+
+        <Button
+            android:id="@+id/exercise_enter_button"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_enter"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<resources>
+
+
+    <string name="show_answer">Show Possible Answer</string>
+
+    <!-- Exercise 1 -->
+    <string name="exercise1_instructions">Write a pattern that matches the
+        word "World".</string>
+    <string name="exercise1_search_text1">"Hello World!"</string>
+    <string name="exercise1_possible_pattern">World</string>
+
+    <!-- Exercise 2 -->
+    <string name="exercise2_instructions">Match any of the following words:
+        hello, hi, hey</string>
+    <string name="exercise2_search_text1">hi there!</string>
+    <string name="exercise2_search_text2">today will be sunny, with a low
+        chance of showers.</string>
+    <string name="exercise2_search_text3">just stopping by to say hey!</string>
+    <string name="exercise2_search_text4">regex is easy!</string>
+    <string name="exercise2_search_text5">hello, it\'s me ...</string>
+    <string name="exercise2_possible_pattern">(hello|hi|hey)</string>
+
+    <!-- Exercise 3 -->
+    <string name="exercise3_instructions">Completely match any sentence that describes
+    the day as good, great, or fantastic.</string>
+    <string name="exercise3_search_text1">Today is a great day!</string>
+    <string name="exercise3_search_text2">It\'s snowing outside.</string>
+    <string name="exercise3_search_text3">Today is a good day!</string>
+    <string name="exercise3_search_text4">Today is not a great day!</string>
+    <string name="exercise3_search_text5">Today is a fantastic day!</string>
+    <string name="exercise3_possible_pattern">Today is a
+        (good|great|fantastic) day!</string>
+
+    <!-- Exercise 4 -->
+    <string name="exercise4_instructions">Match all the 4 letter words that
+        start and end with s.</string>
+    <string name="exercise4_search_text1">sass</string>
+    <string name="exercise4_search_text2">cats</string>
+    <string name="exercise4_search_text3">says</string>
+    <string name="exercise4_search_text4">sales</string>
+    <string name="exercise4_search_text5">s@!s</string>
+    <string name="exercise4_search_text6">s99s</string>
+    <string name="exercise4_possible_pattern">s..s</string>
+
+    <!-- Exercise 5 -->
+    <string name="exercise5_instructions">Match any integer from 0 to 9.</string>
+    <string name="exercise5_search_text1">1 fish, 2 fish</string>
+    <string name="exercise5_search_text2">Red fish, blue fish</string>
+    <string name="exercise5_search_text3">4 Privet Drive</string>
+    <string name="exercise5_search_text4">This sentence has no numbers.</string>
+    <string name="exercise5_search_text5">0123456789</string>
+    <string name="exercise5_possible_pattern">[0123456789]</string>
+
+    <!-- Exercise 6 -->
+    <string name="exercise6_instructions">Match ay integer from 0 to 9.</string>
+    <string name="exercise6_search_text1">1 fish, 2 fish</string>
+    <string name="exercise6_search_text2">Red fish, blue fish</string>
+    <string name="exercise6_search_text3">4 Privet Drive</string>
+    <string name="exercise6_search_text4">This sentence still has no numbers.</string>
+    <string name="exercise6_search_text5">9876543210</string>
+    <string name="exercise6_possible_pattern">[0-9]</string>
+
+    <!-- Exercise 7 -->
+    <string name="exercise7_instructions">Match every phone number.</string>
+    <string name="exercise7_search_text1">5555555555 is not a phone number.</string>
+    <string name="exercise7_search_text2">Call 777-8765</string>
+    <string name="exercise7_search_text3">45 Lakeshore Blvd</string>
+    <string name="exercise7_search_text4">She changed her number to
+        786-2143</string>
+    <string name="exercise7_possible_pattern">\\d\\d\\d-\\d\\d\\d\\d</string>
+
+    <!-- Exercise 8 -->
+    <string name="exercise8_instructions">Match all non-whitespace characters
+        surrounded on both sides by whitespace characters.</string>
+    <string name="exercise8_search_text1">Last week I won the lottery.</string>
+    <string name="exercise8_search_text2">\tRegex_is_easy</string>
+    <string name="exercise8_search_text3">Today is a good day.</string>
+    <string name="exercise8_search_text4">This sentence ends with a tab.\t</string>
+    <string name="exercise8_possible_pattern">\\s\\S\\s</string>
+
+    <!-- Exercise 9 -->
+    <string name="exercise9_instructions">Match lines that start with a
+        digit.</string>
+    <string name="exercise9_search_text1">More than 7 billion people inhabit
+        the earth.</string>
+    <string name="exercise9_search_text2">7 billion swans sing softly.</string>
+    <string name="exercise9_search_text3">\t18 days until the end of summer.</string>
+    <string name="exercise9_search_text4">3, 2, 1, Go!</string>
+    <string name="exercise9_possible_pattern">^\\d</string>
+
+    <!-- Exercise 10 -->
+    <string name="exercise10_instructions">Match exclamation marks that occur
+        at the end of the line.</string>
+    <string name="exercise10_search_text1">What?!?!?</string>
+    <string name="exercise10_search_text2">I won the lottery!</string>
+    <string name="exercise10_search_text3">Nope, never mind.</string>
+    <string name="exercise10_search_text4">!!!!!RUN</string>
+    <string name="exercise10_possible_pattern">!$</string>
+</resources>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Lesson 1 -->
+    <string name="lesson1_title">Welcome to Regex</string>
+    <string name="lesson1_text">A regular expression (regex) is a sequence of
+        characters that defines a search pattern. This pattern can be checked
+        against text, to find matches.\n\nThese pattens can be very literal.
+        If you were looking for Hello, you would use the pattern
+        "Hello".</string>
+    <string name="lesson1_pattern">Hello</string>
+    <string name="lesson1_example">Hello World!</string>
+
+    <!-- Lesson 2 -->
+    <string name="lesson2_title">The OR Operator</string>
+    <string name="lesson2_text">What makes regex so powerful is that it is
+        more flexible than what you\'d use for a Ctrl+F search, and special
+        characters can be used to find exactly what you\'re looking for.\n\n
+        The \'|\' character (the pipe character) to match one pattern OR another
+        pattern. (A|B) would match an A OR a B.</string>
+    <string name="lesson2_pattern">(Regex|RegEx)</string>
+    <string name="lesson2_example">RegEx</string>
+
+    <!-- Lesson 3 -->
+    <string name="lesson3_title">More with OR</string>
+    <string name="lesson3_text">Expressions with the \'|\' character can also
+        be used as part of larger pattern.</string>
+    <string name="lesson3_pattern">The answer to (life|the universe|everything)
+        is 42.</string>
+    <string name="lesson3_example">The answer to life is 42.</string>
+
+    <!-- Lesson 4 -->
+    <string name="lesson4_title">Dot Operator</string>
+    <string name="lesson4_text">For even more flexibility, use \'.\' to match
+        all possible characters except a newline character (the unseen
+        character added when you press the enter button).</string>
+    <string name="lesson4_pattern">s.ack</string>
+    <string name="lesson4_example">smack</string>
+    <string name="lesson4_example2">stack</string>
+    <string name="lesson4_example3">slack</string>
+
+    <!-- Lesson 5 -->
+    <string name="lesson5_title">Character Classes</string>
+    <string name="lesson5_text">If you want to match one of a given set of
+        characters, write each of the characters between square brackets, to
+        create a character class. For example, use [aeiou] to match any one
+        vowel.</string>
+    <string name="lesson5_pattern">[aeiou]</string>
+    <string name="lesson5_example">Vowels</string>
+
+    <!-- Lesson 6 -->
+    <string name="lesson6_title">Ranges</string>
+    <string name="lesson6_text">Matching a character from a given range can be
+        made simpler. Character classes can contain ranges of letters. For
+        example, [b-g] would match any lowercase letter from b to g. One
+        character class can contain more than one range. [b-gB-G] matches all
+        letters from b to b, regardless of case.</string>
+    <string name="lesson6_pattern">[b-gB-G]</string>
+    <string name="lesson6_example">felines</string>
+    <string name="lesson6_example2">HI THERE!</string>
+
+    <!-- Lesson 7 -->
+    <string name="lesson7_title">Digits</string>
+    <string name="lesson7_text">The \\d special character is another easy way
+        to match digits.\n\nNote: \\d is very similar to [0-9], but also
+        matches digits from other number systems. This is useful when analyzing
+        text in other languages.</string>
+    <string name="lesson7_pattern">\\d</string>
+    <string name="lesson7_example">You\'ve made it to Lesson 7!</string>
+
+    <!-- Lesson 8 -->
+    <string name="lesson8_title">Whitespace</string>
+    <string name="lesson8_text">The \\s character matches whitespace
+        characters. This includes spaces and tabs. The \\S character matches
+        everything that is NOT a whitespace character.\n\nNote: Whitespace
+        characters also include newlines, carriage returns, and formfeed
+        characters.</string>
+    <string name="lesson8_pattern">\\S\\s\\S</string>
+    <string name="lesson8_example">= )</string>
+
+    <!-- Lesson 9 -->
+    <string name="lesson9_title">Start of a Line</string>
+    <string name="lesson9_text">The \'^\' character is used to indicate the
+        start of a line. ^Regex would match lines that start with Regex, but
+        not lines that include Regex somewhere else.</string>
+    <string name="lesson9_pattern">^Regex</string>
+    <string name="lesson9_example">Regex is easy</string>
+    <string name="lesson9_example2">This is Regex</string>
+
+    <!-- Lesson 10 -->
+    <string name="lesson10_title">End of a Line</string>
+    <string name="lesson10_text">The \'$\' character matches the end of a line.
+        For example, cat$ matches lines that end with cat.</string>
+    <string name="lesson10_pattern">cat$</string>
+    <string name="lesson10_example">Copycat</string>
+    <string name="lesson10_example2">Concatenate</string>
+
+</resources>

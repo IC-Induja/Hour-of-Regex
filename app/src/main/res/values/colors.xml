@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="green">#B5D932</color>
+    <color name="lesson_font_color">#F5F5F5</color>
+    <color name="blue">#07DBF2</color>
+    <color name="black">#000000</color>
+    <color name="landing_button_background">#e1181818</color>
+
+    <!-- Material Design Colors -->
+    <color name="light_green">#8BC34A</color>
+    <color name="cyan">#00BCD4</color>
+
+    <color name="highlight">#FFFF00</color>
+</resources>
