@@ -18,6 +18,9 @@
     <!--Exercise Fragment -->
     <string name="regex_input_hint">Enter Regex here</string>
     <string name="bad_syntax">The expression entered is invalid.</string>
+    <string name="bad_brackets">Make sure your opening and closing
+        brackets are balanced!</string>
+    <string name="bad_case">Careful, regex is case-sensitive!</string>
     <string name="button_enter">Enter</string>
 
     <!-- Menu -->
@@ -28,9 +31,9 @@
     <!-- Completion Activity -->
     <string name="title_activity_completion"></string>
     <string name="congratulations">Congratulations!</string>
-    <string name="completion_subtitle">You\'ve learned basic regex. Stay tuned for future
-        updates to delve into deeper regex features (repetition, capture groups,
-        etc.)</string>
+    <string name="completion_subtitle">You\'ve learned basic regex. Stay tuned
+        for future updates to delve into deeper regex features (repetition,
+        capture groups, etc.)</string>
     <string name="further_learning">If you want to learn more, look around on
         the web. There are plenty of free resources available.\nSome of our
         favourites are:</string>

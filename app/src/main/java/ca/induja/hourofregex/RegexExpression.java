@@ -1,6 +1,9 @@
 package ca.induja.hourofregex;
 
+import android.content.Context;
+
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -11,7 +14,7 @@ public class RegexExpression {
     Pattern Regex;
 
 
-    private boolean isBalanced(String regex) {
+    public static boolean isBalanced(String regex) {
         int len = regex.length();
         ArrayList<Character> stack = new ArrayList<Character>();
 
@@ -42,5 +45,23 @@ public class RegexExpression {
         }
 
         return true;
+    }
+
+    // returns true is expression is correct in everything but case
+    public static boolean isWrongCase(String regex, int matchTextIds[],
+                                      Context context) {
+        int numRows = matchTextIds.length;
+        Pattern inputPattern =  Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
+        boolean allMatch = true;
+        for(int i = 0; i < numRows; ++i) {
+            String matchText = context.getString(matchTextIds[i]);
+            if(!inputPattern.matcher(matchText).find()) {
+                allMatch = false;
+                break;
+            }
+        }
+
+        return allMatch;
     }
 }

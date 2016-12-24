@@ -1,6 +1,7 @@
 package ca.induja.hourofregex;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -279,13 +280,22 @@ public class ExerciseFragment extends Fragment {
                     allCorrect = false;
                 }
 
-            } catch (PatternSyntaxException e){
-                Toast.makeText(getActivity(), R.string.bad_syntax,
-                        Toast.LENGTH_SHORT).show();
+            } catch (PatternSyntaxException e) {
+                if(!RegexExpression.isBalanced(regexInput)) {
+                    Toast.makeText(getActivity(), R.string.bad_brackets,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), R.string.bad_syntax,
+                            Toast.LENGTH_SHORT).show();
+                }
             }
 
             if(allCorrect) {
                 mExerciseComplete.showNextButton();
+            } else if(RegexExpression.isWrongCase(regexInput,
+                    mCurrentExercise.mSearchTextIds, (Context) getActivity())) {
+                Toast.makeText(getActivity(), R.string.bad_case,
+                        Toast.LENGTH_SHORT).show();
             }
         }
 
