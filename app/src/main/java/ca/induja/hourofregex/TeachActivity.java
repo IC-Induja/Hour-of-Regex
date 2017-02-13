@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import static ca.induja.hourofregex.Constants.Lessons;
+
 
 /**
  * Created by induj on 2016-10-11.
@@ -58,12 +60,10 @@ public class TeachActivity extends AppCompatActivity
         navigationView.findViewById(R.id.nav_view);
         Menu menu = navigationView.getMenu();
 
-        int numMenuItems = LessonFragment.mLessons.length;
+        int numMenuItems = Lessons.length;
         for(int i = 0; i < numMenuItems; i++){
-            menu.add(Menu.NONE, LessonFragment.mLessons[i].mId, Menu.NONE,
-                    LessonFragment
-                            .mLessons[i]
-                            .mLessonTitleId);
+            menu.add(Menu.NONE, Lessons[i].mId, Menu.NONE,
+                    Lessons[i].mLessonTitleId);
         }
 
         mNextButton = (Button)findViewById(R.id.button_next);

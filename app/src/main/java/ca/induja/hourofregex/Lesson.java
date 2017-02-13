@@ -6,14 +6,15 @@ package ca.induja.hourofregex;
 
 public class Lesson {
     int mId, mLessonTitleId, mLessonTextId, mExamplePatternId;
-    int [] mSearchTextIds;
+    int mSearchTextArrayId;
 
-    public Lesson(int lessonId, int lessonTitleId, int lessonTextId, int patternId, int[] searchTextIds) {
+    public Lesson(int lessonId, int lessonTitleId, int lessonTextId, int
+            patternId, int searchTextArrayId) {
         this.mId = lessonId;
         this.mLessonTitleId = lessonTitleId;
         this.mLessonTextId = lessonTextId;
         this.mExamplePatternId = patternId;
-        this.mSearchTextIds = searchTextIds;
+        this.mSearchTextArrayId = searchTextArrayId;
         }
     }
 

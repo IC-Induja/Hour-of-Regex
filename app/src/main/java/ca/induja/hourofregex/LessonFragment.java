@@ -1,6 +1,7 @@
 package ca.induja.hourofregex;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Spannable;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static ca.induja.hourofregex.Constants.Lessons;
+
 /**
  * Created by induj on 2016-10-11.
  */
@@ -24,49 +27,10 @@ public class LessonFragment extends Fragment {
 
     OnIndexChangedListener mCallback;
 
+    final int NUM_LESSONS = 10;
     int mCurrentLessonId;
     TextView mLessonTextView;
     TableLayout mRegexExampleLayout;
-
-    //TODO: Messy. Find a way to put this in new file
-    public static Lesson[] mLessons = new Lesson[] {
-            new Lesson(0, R.string.lesson1_title,
-                    R.string.lesson1_text,
-                    R.string.lesson1_pattern, new int[]{R.string.lesson1_example}),
-            new Lesson(1, R.string.lesson2_title,
-                    R.string.lesson2_text,
-                    R.string.lesson2_pattern, new int[]{R.string.lesson2_example}),
-            new Lesson(2, R.string.lesson3_title,
-                    R.string.lesson3_text,
-                    R.string.lesson3_pattern, new int[]{R.string
-                    .lesson3_example}),
-            new Lesson(3, R.string.lesson4_title, R.string.lesson4_text, R
-                    .string.lesson4_pattern, new int[] {
-                    R.string.lesson4_example,
-                    R.string.lesson4_example2,
-                    R.string.lesson4_example3}),
-            new Lesson(4, R.string.lesson5_title, R.string.lesson5_text, R
-                    .string.lesson5_pattern, new int[] {R.string
-                    .lesson5_example}),
-            new Lesson(5, R.string.lesson6_title, R.string.lesson6_text, R
-                    .string.lesson6_pattern, new int[] {R.string
-                    .lesson6_example, R.string.lesson6_example2}),
-            new Lesson(6, R.string.lesson7_title, R.string.lesson7_text, R
-                    .string.lesson7_pattern, new int[] {R.string
-                    .lesson7_example}),
-            new Lesson(7, R.string.lesson8_title, R.string.lesson8_text, R
-                    .string.lesson8_pattern, new int[] {R.string
-                    .lesson8_example}),
-            new Lesson(8, R.string.lesson9_title, R.string.lesson9_text, R
-                    .string.lesson9_pattern, new int[] {
-                    R.string.lesson9_example,
-                    R.string.lesson9_example2}),
-            new Lesson(9, R.string.lesson10_title, R.string.lesson10_text,
-                    R.string.lesson10_pattern, new int[] {
-                    R.string.lesson10_example,
-                    R.string.lesson10_example})
-    };
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -109,7 +73,9 @@ public class LessonFragment extends Fragment {
 
     public void setLesson(int lessonId) {
         mCurrentLessonId = lessonId;
-        Lesson currentLesson = mLessons[lessonId];
+        Lesson currentLesson = Lessons[lessonId];
+        String[] searchTextIds = getResources().getStringArray(currentLesson
+                .mSearchTextArrayId);
 
         // Lesson Setup
         mLessonTextView.setText(currentLesson.mLessonTextId);
@@ -123,28 +89,28 @@ public class LessonFragment extends Fragment {
         ((TextView)row.findViewById(R.id.example_pattern_text)).
                 setText(currentLesson.mExamplePatternId);
         Spannable highlightedMatchText = highlightMatches(currentLesson.mExamplePatternId,
-                currentLesson.mSearchTextIds[0]);
+                searchTextIds[0]);
         ((TextView)row.findViewById(R.id.example_match_text)).setText(highlightedMatchText);
         mRegexExampleLayout.addView(row);
 
         // If there are any more examples, add them in too
-        int numExamples = currentLesson.mSearchTextIds.length;
+        int numExamples = searchTextIds.length;
         for(int i = 1; i < numExamples; i++) {
             row = (TableRow)LayoutInflater.from(getActivity()).
                     inflate(R.layout.regex_example_table_row, null);
             ((TextView)row.findViewById(R.id.example_pattern_text)).setText("");
             highlightedMatchText = highlightMatches(currentLesson.mExamplePatternId,
-                    currentLesson.mSearchTextIds[i]);
+                    searchTextIds[i]);
             ((TextView)row.findViewById(R.id.example_match_text)).setText(highlightedMatchText);
             mRegexExampleLayout.addView(row);
         }
 
     }
 
-    public Spannable highlightMatches(int patternId, int matchTextId) {
+    public Spannable highlightMatches(int patternId, String matchText) {
         Pattern pattern = Pattern.compile(getString(patternId));
-        Matcher matcher = pattern.matcher(getString(matchTextId));
-        Spannable matchedText = Spannable.Factory.getInstance().newSpannable(getString(matchTextId));
+        Matcher matcher = pattern.matcher(matchText);
+        Spannable matchedText = Spannable.Factory.getInstance().newSpannable(matchText);
         if(matcher.find()) {
             matchedText.setSpan(new BackgroundColorSpan(0xFFFFFF00), matcher.start(),
                     matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
