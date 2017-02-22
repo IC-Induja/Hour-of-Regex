@@ -85,25 +85,33 @@ public class LessonFragment extends Fragment {
         // Regex Example Setup
         mRegexExampleLayout.removeAllViews();
 
-        // TODO: remove repeated code
-        // Inflate row from layout
-        TableRow row = (TableRow)LayoutInflater.from(getActivity()).
-                inflate(R.layout.regex_example_table_row, null);
-        // Set row1 fields with proper text
-        ((TextView)row.findViewById(R.id.example_pattern_text)).
-                setText(mCurrentLesson.mPattern);
-        Spannable highlightedMatchText = highlightMatches(mCurrentLesson.mPattern,
-                mCurrentLesson.mSearchText[0]);
-        ((TextView)row.findViewById(R.id.example_match_text)).setText(highlightedMatchText);
-        mRegexExampleLayout.addView(row);
+//        // TODO: remove repeated code
+//        // Inflate row from layout
+//        TableRow row = (TableRow)LayoutInflater.from(getActivity()).
+//                inflate(R.layout.regex_example_table_row, null);
+//        // Set row1 fields with proper text
+//        ((TextView)row.findViewById(R.id.example_pattern_text)).
+//                setText(mCurrentLesson.mPattern);
+//        Spannable highlightedMatchText = highlightMatches(mCurrentLesson.mPattern,
+//                mCurrentLesson.mSearchText[0]);
+//        ((TextView)row.findViewById(R.id.example_match_text)).setText(highlightedMatchText);
+//        mRegexExampleLayout.addView(row);
 
         // If there are any more examples, add them in too
         int numExamples = mCurrentLesson.mSearchText.length;
-        for(int i = 1; i < numExamples; i++) {
-            row = (TableRow)LayoutInflater.from(getActivity()).
+        for(int i = 0; i < numExamples; i++) {
+            // Inflate row from layout
+            TableRow row = (TableRow)LayoutInflater.from(getActivity()).
                     inflate(R.layout.regex_example_table_row, null);
-            ((TextView)row.findViewById(R.id.example_pattern_text)).setText("");
-            highlightedMatchText = highlightMatches(mCurrentLesson.mPattern,
+            // Set row fields with proper text
+            String examplePattern;
+            if(i == 0) {
+                examplePattern = mCurrentLesson.mPattern;
+            } else {
+                examplePattern = "";
+            }
+            ((TextView)row.findViewById(R.id.example_pattern_text)).setText(examplePattern);
+            Spannable highlightedMatchText = highlightMatches(mCurrentLesson.mPattern,
                     mCurrentLesson.mSearchText[i]);
             ((TextView)row.findViewById(R.id.example_match_text)).setText(highlightedMatchText);
             mRegexExampleLayout.addView(row);

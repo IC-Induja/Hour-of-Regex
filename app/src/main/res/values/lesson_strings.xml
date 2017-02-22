@@ -125,8 +125,8 @@
         <!-- Lesson 14 -->
         <item>The ? character is used to match a group that may or may not be
         present. (? matches one or zero occurrences of the previous group.)</item>
-        <item>//b(Prince )?Harry//b</item>
-        <item>~Prince Harry~Harry~Prince Prince Harry</item>
+        <item>(Prince )?Harry</item>
+        <item>Prince Harry~Harry~Prince Prince Harry</item>
 
         <!-- Lesson 15 -->
         <item>The repeated groups being searched for using a special character
@@ -137,7 +137,7 @@
         <!-- Lesson 16 -->
         <item>Use braces to specify an exact number of repetitions.</item>
         <item>(hello){3}</item>
-        <item>hellohellohello~hello</item>
+        <item>hello~hellohellohello</item>
     </string-array>
 
 </resources>
