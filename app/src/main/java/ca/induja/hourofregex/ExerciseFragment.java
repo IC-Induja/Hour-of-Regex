@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,6 +85,18 @@ public class ExerciseFragment extends Fragment {
         mRegexInput = (EditText)getView().findViewById(R.id.regex_input);
         mRegexInput.getBackground().setColorFilter(getResources()
                 .getColor(R.color.light_green), PorterDuff.Mode.SRC_IN);
+        // set keyboard to hide when enter is pressed
+        mRegexInput.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    mEnterButton.performClick();
+                }
+                return true;
+            }
+        });
         int exerciseId = mCallback.getCurrentIndex();
         setExercise(exerciseId);
 
@@ -91,9 +105,17 @@ public class ExerciseFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 checkAnswer();
+                InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                mgr.hideSoftInputFromWindow(mRegexInput.getWindowToken(), 0);
             }
         });
 
+    }
+
+    public void onEnterClick(View view) {
+        checkAnswer();
+        InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(mRegexInput.getWindowToken(), 0);
     }
 
     public void setExercise(int exerciseId) {
