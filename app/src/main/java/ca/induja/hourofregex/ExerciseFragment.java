@@ -207,7 +207,7 @@ public class ExerciseFragment extends Fragment {
         if(allCorrect) {
             mExerciseComplete.showNextButton();
         } else if(RegexExpression.isWrongCase(regexInput,
-                mCurrentExercise.mSearchText, (Context) getActivity())) {
+                mCurrentExercise, (Context) getActivity())) {
             Toast.makeText(getActivity(), R.string.bad_case,
                     Toast.LENGTH_SHORT).show();
         }
