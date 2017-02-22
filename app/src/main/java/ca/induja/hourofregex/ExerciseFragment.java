@@ -147,7 +147,7 @@ public class ExerciseFragment extends Fragment {
 
             String text = searchTextArray[i];
             row_text.setText(text);
-            ImageView row_icon = (ImageView)mSearchText.getChildAt(i)
+            ImageView row_icon = (ImageView) mSearchText.getChildAt(i)
                     .findViewById(R.id.row_result_icon);
 
             try {
@@ -159,13 +159,13 @@ public class ExerciseFragment extends Fragment {
                 inputIsMatch = inputMatcher.find();
                 sampleIsMatch = sampleMatcher.find();
 
-                if(inputIsMatch) {
+                if (inputIsMatch) {
                     highlightText(inputMatcher.start(), inputMatcher.end(),
                             row_text, i);
                 }
 
-                if(inputIsMatch == sampleIsMatch){
-                    if(!sampleIsMatch) {
+                if (inputIsMatch == sampleIsMatch) {
+                    if (!sampleIsMatch) {
                         // set right icon
                         Drawable icon = getResources().getDrawable(R.drawable
                                 .right_icon);
@@ -194,7 +194,7 @@ public class ExerciseFragment extends Fragment {
                 }
 
             } catch (PatternSyntaxException e) {
-                if(!RegexExpression.isBalanced(regexInput)) {
+                if (!RegexExpression.isBalanced(regexInput)) {
                     Toast.makeText(getActivity(), R.string.bad_brackets,
                             Toast.LENGTH_SHORT).show();
                 } else {
@@ -202,15 +202,16 @@ public class ExerciseFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                 }
             }
-
-            if(allCorrect) {
-                mExerciseComplete.showNextButton();
-            } else if(RegexExpression.isWrongCase(regexInput,
-                    mCurrentExercise.mSearchText, (Context) getActivity())) {
-                Toast.makeText(getActivity(), R.string.bad_case,
-                        Toast.LENGTH_SHORT).show();
-            }
         }
+
+        if(allCorrect) {
+            mExerciseComplete.showNextButton();
+        } else if(RegexExpression.isWrongCase(regexInput,
+                mCurrentExercise.mSearchText, (Context) getActivity())) {
+            Toast.makeText(getActivity(), R.string.bad_case,
+                    Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }
