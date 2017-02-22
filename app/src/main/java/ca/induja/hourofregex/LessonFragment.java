@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static ca.induja.hourofregex.Constants.Lessons;
+import ca.induja.hourofregex.Constants;
 
 /**
  * Created by induj on 2016-10-11.
@@ -27,10 +27,10 @@ public class LessonFragment extends Fragment {
 
     OnIndexChangedListener mCallback;
 
-    final int NUM_LESSONS = 10;
-    int mCurrentLessonId;
-    TextView mLessonTextView;
-    TableLayout mRegexExampleLayout;
+    private String[] mLessonText;
+    private Lesson mCurrentLesson;
+    private TextView mLessonTextView;
+    private TableLayout mRegexExampleLayout;
 
     @Override
     public void onAttach(Activity activity) {
@@ -59,10 +59,11 @@ public class LessonFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
+        mLessonText = getResources().getStringArray(R.array.lesson_text);
         mLessonTextView = (TextView)getView().findViewById(R.id.lesson_text_view);
         mRegexExampleLayout = (TableLayout)getView().findViewById(R.id.regex_example_layout);
-        mCurrentLessonId = mCallback.getCurrentIndex();
-        setLesson(mCurrentLessonId);
+        int lessonId = mCallback.getCurrentIndex();
+        setLesson(lessonId);
     }
 
     @Override
@@ -72,43 +73,46 @@ public class LessonFragment extends Fragment {
 
 
     public void setLesson(int lessonId) {
-        mCurrentLessonId = lessonId;
-        Lesson currentLesson = Lessons[lessonId];
-        String[] searchTextIds = getResources().getStringArray(currentLesson
-                .mSearchTextArrayId);
+        int curIndex = lessonId * Constants.LESSON_LENGTH;
+        String teachText = mLessonText[curIndex + Constants.TEACH_TEXT];
+        String pattern = mLessonText[curIndex + Constants.PATTERN];
+        String[] exampleText = mLessonText[curIndex + Constants.EXAMPLE_TEXT].split("~");
+        mCurrentLesson = new Lesson(lessonId, teachText, pattern, exampleText);
 
         // Lesson Setup
-        mLessonTextView.setText(currentLesson.mLessonTextId);
+        mLessonTextView.setText(mCurrentLesson.mTeachText);
 
         // Regex Example Setup
         mRegexExampleLayout.removeAllViews();
+
+        // TODO: remove repeated code
         // Inflate row from layout
         TableRow row = (TableRow)LayoutInflater.from(getActivity()).
                 inflate(R.layout.regex_example_table_row, null);
         // Set row1 fields with proper text
         ((TextView)row.findViewById(R.id.example_pattern_text)).
-                setText(currentLesson.mExamplePatternId);
-        Spannable highlightedMatchText = highlightMatches(currentLesson.mExamplePatternId,
-                searchTextIds[0]);
+                setText(mCurrentLesson.mPattern);
+        Spannable highlightedMatchText = highlightMatches(mCurrentLesson.mPattern,
+                mCurrentLesson.mSearchText[0]);
         ((TextView)row.findViewById(R.id.example_match_text)).setText(highlightedMatchText);
         mRegexExampleLayout.addView(row);
 
         // If there are any more examples, add them in too
-        int numExamples = searchTextIds.length;
+        int numExamples = mCurrentLesson.mSearchText.length;
         for(int i = 1; i < numExamples; i++) {
             row = (TableRow)LayoutInflater.from(getActivity()).
                     inflate(R.layout.regex_example_table_row, null);
             ((TextView)row.findViewById(R.id.example_pattern_text)).setText("");
-            highlightedMatchText = highlightMatches(currentLesson.mExamplePatternId,
-                    searchTextIds[i]);
+            highlightedMatchText = highlightMatches(mCurrentLesson.mPattern,
+                    mCurrentLesson.mSearchText[i]);
             ((TextView)row.findViewById(R.id.example_match_text)).setText(highlightedMatchText);
             mRegexExampleLayout.addView(row);
         }
 
     }
 
-    public Spannable highlightMatches(int patternId, String matchText) {
-        Pattern pattern = Pattern.compile(getString(patternId));
+    public Spannable highlightMatches(String patternText, String matchText) {
+        Pattern pattern = Pattern.compile(patternText);
         Matcher matcher = pattern.matcher(matchText);
         Spannable matchedText = Spannable.Factory.getInstance().newSpannable(matchText);
         if(matcher.find()) {

@@ -48,20 +48,22 @@ public class RegexExpression {
     }
 
     // returns true is expression is correct in everything but case
-    public static boolean isWrongCase(String regex, int matchTextIds[],
+    public static boolean isWrongCase(String regex, String matchText[],
                                       Context context) {
-        int numRows = matchTextIds.length;
-        Pattern inputPattern =  Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        int numRows = matchText.length;
+        Pattern caseInsensitivePattern =  Pattern.compile(regex, Pattern
+                .CASE_INSENSITIVE);
+        Pattern inputPattern = Pattern.compile(regex);
 
-        boolean allMatch = true;
+        boolean sameMatch = true;
         for(int i = 0; i < numRows; ++i) {
-            String matchText = context.getString(matchTextIds[i]);
-            if(!inputPattern.matcher(matchText).find()) {
-                allMatch = false;
+            if(inputPattern.matcher(matchText[i]).find() !=
+                    caseInsensitivePattern.matcher(matchText[i]).find()) {
+                sameMatch = false;
                 break;
             }
         }
 
-        return allMatch;
+        return sameMatch;
     }
 }

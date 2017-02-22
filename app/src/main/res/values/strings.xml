@@ -32,8 +32,8 @@
     <string name="title_activity_completion"></string>
     <string name="congratulations">Congratulations!</string>
     <string name="completion_subtitle">You\'ve learned basic regex. Stay tuned
-        for future updates to delve into deeper regex features (repetition,
-        capture groups, etc.)</string>
+        for future updates to delve into deeper regex features (backreferences,
+        escape characters, etc.)</string>
     <string name="further_learning">If you want to learn more, look around on
         the web. There are plenty of free resources available.\nSome of our
         favourites are:</string>

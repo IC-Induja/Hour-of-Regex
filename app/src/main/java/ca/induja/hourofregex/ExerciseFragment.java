@@ -24,6 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import ca.induja.hourofregex.Constants;
 /**
  * Created by induj on 2016-10-11.
  */
@@ -32,106 +33,13 @@ public class ExerciseFragment extends Fragment {
     private OnIndexChangedListener mCallback;
     private OnExerciseCompleteListener mExerciseComplete;
 
-    private int mCurrentExerciseId;
+    private String[] mExerciseText;
     private Exercise mCurrentExercise;
     private TextView mInstructions;
     private TableLayout mSearchText;
     private EditText mRegexInput;
     private Button mEnterButton;
 
-
-    //TODO: Messy. Find a way to put this in new file
-    public Exercise[] mExercises = new Exercise[] {
-            new Exercise(0, R.string.exercise1_instructions,
-                    new int[]{R.string.exercise1_search_text1},
-                    R.string.exercise1_possible_pattern),
-            new Exercise(1, R.string.exercise2_instructions,
-                    new int[] {
-                            R.string.exercise2_search_text1,
-                            R.string.exercise2_search_text2,
-                            R.string.exercise2_search_text3,
-                            R.string.exercise2_search_text4,
-                            R.string.exercise2_search_text5
-                    },
-                    R.string.exercise2_possible_pattern),
-            new Exercise(2,
-                    R.string.exercise3_instructions,
-                    new int[] {
-                            R.string.exercise3_search_text1,
-                            R.string.exercise3_search_text2,
-                            R.string.exercise3_search_text3,
-                            R.string.exercise3_search_text4,
-                            R.string.exercise3_search_text5
-                    },
-                    R.string.exercise3_possible_pattern),
-            new Exercise(3,
-                    R.string.exercise4_instructions,
-                    new int[] {
-                            R.string.exercise4_search_text1,
-                            R.string.exercise4_search_text2,
-                            R.string.exercise4_search_text3,
-                            R.string.exercise4_search_text4,
-                            R.string.exercise4_search_text5,
-                            R.string.exercise4_search_text6
-                    },
-                    R.string.exercise4_possible_pattern),
-            new Exercise(4,
-                    R.string.exercise5_instructions,
-                    new int[] {
-                            R.string.exercise5_search_text1,
-                            R.string.exercise5_search_text2,
-                            R.string.exercise5_search_text3,
-                            R.string.exercise5_search_text4,
-                            R.string.exercise5_search_text5,
-                    },
-                    R.string.exercise5_possible_pattern),
-            new Exercise(5,
-                    R.string.exercise6_instructions,
-                    new int[] {
-                            R.string.exercise6_search_text1,
-                            R.string.exercise6_search_text2,
-                            R.string.exercise6_search_text3,
-                            R.string.exercise6_search_text4,
-                            R.string.exercise6_search_text5,
-                    },
-                    R.string.exercise6_possible_pattern),
-            new Exercise(6,
-                    R.string.exercise7_instructions,
-                    new int[] {
-                            R.string.exercise7_search_text1,
-                            R.string.exercise7_search_text2,
-                            R.string.exercise7_search_text3,
-                            R.string.exercise7_search_text4
-                    },
-                    R.string.exercise7_possible_pattern),
-            new Exercise(7,
-                    R.string.exercise8_instructions,
-                    new int[] {
-                            R.string.exercise8_search_text1,
-                            R.string.exercise8_search_text2,
-                            R.string.exercise8_search_text3,
-                            R.string.exercise8_search_text4
-                    },
-                    R.string.exercise8_possible_pattern),
-            new Exercise(8,
-                    R.string.exercise9_instructions,
-                    new int[] {
-                            R.string.exercise9_search_text1,
-                            R.string.exercise9_search_text2,
-                            R.string.exercise9_search_text3,
-                            R.string.exercise9_search_text4
-                    },
-                    R.string.exercise9_possible_pattern),
-            new Exercise(9,
-                    R.string.exercise10_instructions,
-                    new int[] {
-                            R.string.exercise10_search_text1,
-                            R.string.exercise10_search_text2,
-                            R.string.exercise10_search_text3,
-                            R.string.exercise10_search_text4
-                    },
-                    R.string.exercise10_possible_pattern)
-    };
 
     public interface OnExerciseCompleteListener {
         void showNextButton();
@@ -169,17 +77,16 @@ public class ExerciseFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
+        mExerciseText = getResources().getStringArray(R.array.exercise_text);
         mInstructions = (TextView)getView().findViewById(R.id.instructions);
         mSearchText = (TableLayout)getView().findViewById(R.id.search_text);
         mRegexInput = (EditText)getView().findViewById(R.id.regex_input);
-        mRegexInput.getBackground().setColorFilter(getResources().getColor(R.color
-                        .light_green),
-                PorterDuff.Mode.SRC_IN);
-        mCurrentExerciseId = mCallback.getCurrentIndex();
-        setExercise(mCurrentExerciseId);
+        mRegexInput.getBackground().setColorFilter(getResources()
+                .getColor(R.color.light_green), PorterDuff.Mode.SRC_IN);
+        int exerciseId = mCallback.getCurrentIndex();
+        setExercise(exerciseId);
 
-        mEnterButton = (Button)getView().findViewById(R.id
-                .exercise_enter_button);
+        mEnterButton = (Button)getView().findViewById(R.id.exercise_enter_button);
         mEnterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,17 +97,22 @@ public class ExerciseFragment extends Fragment {
     }
 
     public void setExercise(int exerciseId) {
-        mCurrentExercise = mExercises[exerciseId];
+        int curIndex = exerciseId * Constants.EXERCISE_LENGTH;
+        String instructions = mExerciseText[curIndex + Constants.INSTRUCTIONS];
+        String[] searchText = mExerciseText[curIndex + Constants.SEARCH_TEXT].split("~");
+        String possiblePattern = mExerciseText[curIndex + Constants.POSSIBLE_PATTERN];
+        mCurrentExercise = new Exercise(exerciseId, instructions, searchText,
+                possiblePattern);
 
         // Instructions Setup
-        mInstructions.setText(getText(mCurrentExercise.mInstructionsId));
+        mInstructions.setText(instructions);
 
         // Regex Input Setup
         mRegexInput.setText(null);
 
         // Search Text Setup
         mSearchText.removeAllViews();
-        int numSearchTexts = mCurrentExercise.mSearchTextIds.length;
+        int numSearchTexts = searchText.length;
         for(int i = 0; i < numSearchTexts; i++) {
             // Inflate Row from layout
             TableRow row = (TableRow)LayoutInflater.from(getActivity()).
@@ -208,7 +120,7 @@ public class ExerciseFragment extends Fragment {
 
             // Set row fields
             ((TextView)row.findViewById(R.id.row_search_text))
-                    .setText(mCurrentExercise.mSearchTextIds[i]);
+                    .setText(searchText[i]);
             mSearchText.addView(row);
 
         }
@@ -218,6 +130,7 @@ public class ExerciseFragment extends Fragment {
 
         String regexInput = mRegexInput.getText().toString();
         boolean allCorrect = true;
+        String[] searchTextArray = mCurrentExercise.mSearchText;
 
         int numRows = mSearchText.getChildCount();
         for(int i = 0; i < numRows; i++) {
@@ -232,7 +145,7 @@ public class ExerciseFragment extends Fragment {
                     .findViewById
                             (R.id.row_search_text);
 
-            String text = getString(mCurrentExercise.mSearchTextIds[i]);
+            String text = searchTextArray[i];
             row_text.setText(text);
             ImageView row_icon = (ImageView)mSearchText.getChildAt(i)
                     .findViewById(R.id.row_result_icon);
@@ -240,8 +153,8 @@ public class ExerciseFragment extends Fragment {
             try {
                 Pattern inputPattern = Pattern.compile(regexInput);
                 inputMatcher = inputPattern.matcher(row_text.getText());
-                Pattern samplePattern = Pattern.compile(getString
-                        (mCurrentExercise.mPossiblePatternId));
+                Pattern samplePattern = Pattern
+                        .compile(mCurrentExercise.mPossiblePattern);
                 sampleMatcher = samplePattern.matcher(row_text.getText());
                 inputIsMatch = inputMatcher.find();
                 sampleIsMatch = sampleMatcher.find();
@@ -293,7 +206,7 @@ public class ExerciseFragment extends Fragment {
             if(allCorrect) {
                 mExerciseComplete.showNextButton();
             } else if(RegexExpression.isWrongCase(regexInput,
-                    mCurrentExercise.mSearchTextIds, (Context) getActivity())) {
+                    mCurrentExercise.mSearchText, (Context) getActivity())) {
                 Toast.makeText(getActivity(), R.string.bad_case,
                         Toast.LENGTH_SHORT).show();
             }

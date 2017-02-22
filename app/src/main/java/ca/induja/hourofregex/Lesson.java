@@ -5,16 +5,16 @@ package ca.induja.hourofregex;
  */
 
 public class Lesson {
-    int mId, mLessonTitleId, mLessonTextId, mExamplePatternId;
-    int mSearchTextArrayId;
+    int mId;
+    String mTeachText, mPattern;
+    String[] mSearchText;
 
-    public Lesson(int lessonId, int lessonTitleId, int lessonTextId, int
-            patternId, int searchTextArrayId) {
+    public Lesson(int lessonId, String teachText, String pattern,
+                  String [] searchText) {
         this.mId = lessonId;
-        this.mLessonTitleId = lessonTitleId;
-        this.mLessonTextId = lessonTextId;
-        this.mExamplePatternId = patternId;
-        this.mSearchTextArrayId = searchTextArrayId;
+        this.mTeachText = teachText;
+        this.mPattern = pattern;
+        this.mSearchText = searchText;
         }
     }
 

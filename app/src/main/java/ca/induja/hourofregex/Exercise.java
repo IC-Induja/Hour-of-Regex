@@ -5,13 +5,15 @@ package ca.induja.hourofregex;
  */
 
 public class Exercise {
-    int mId, mInstructionsId, mPossiblePatternId;
-    int[] mSearchTextIds;
+    int mId;
+    String mInstructions, mPossiblePattern;
+    String[] mSearchText;
 
-    public Exercise(int id, int instructionsId, int[] searchTextIds, int possiblePatternId) {
+    public Exercise(int id, String instructions, String[] searchText,
+                    String possiblePattern) {
         this.mId = id;
-        this.mInstructionsId = instructionsId;
-        this.mSearchTextIds = searchTextIds;
-        this.mPossiblePatternId = possiblePatternId;
+        this.mInstructions = instructions;
+        this.mSearchText = searchText;
+        this.mPossiblePattern = possiblePattern;
     }
 }

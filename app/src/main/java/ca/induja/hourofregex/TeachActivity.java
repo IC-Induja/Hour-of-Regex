@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import static ca.induja.hourofregex.Constants.Lessons;
+import ca.induja.hourofregex.Constants;
 
 
 /**
@@ -60,10 +60,10 @@ public class TeachActivity extends AppCompatActivity
         navigationView.findViewById(R.id.nav_view);
         Menu menu = navigationView.getMenu();
 
-        int numMenuItems = Lessons.length;
-        for(int i = 0; i < numMenuItems; i++){
-            menu.add(Menu.NONE, Lessons[i].mId, Menu.NONE,
-                    Lessons[i].mLessonTitleId);
+        int numMenuItems = Constants.NUM_LESSONS;
+        String[] menu_text = getResources().getStringArray(R.array.lesson_titles);
+        for(int i = 0; i < numMenuItems; ++i) {
+            menu.add(Menu.NONE, i, Menu.NONE, menu_text[i]);
         }
 
         mNextButton = (Button)findViewById(R.id.button_next);
@@ -116,7 +116,7 @@ public class TeachActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         mCurrentIndex = id;
-        setLesson(mCurrentIndex);
+        setLessonAndExercise(mCurrentIndex);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -141,12 +141,12 @@ public class TeachActivity extends AppCompatActivity
 
     public void onNextPressed(View view) {
         mCurrentIndex++;
-        setLesson(mCurrentIndex);
+        setLessonAndExercise(mCurrentIndex);
     }
 
-    public void setLesson(int index){
+    public void setLessonAndExercise(int index){
 
-        if(index == 10) {
+        if(index == Constants.NUM_LESSONS) {
             Intent intent = new Intent(this, CompletionActivity.class);
             startActivity(intent);
         } else {

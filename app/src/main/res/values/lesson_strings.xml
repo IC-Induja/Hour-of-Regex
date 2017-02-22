@@ -1,129 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Lesson 1 -->
-    <string name="lesson1_title">Welcome to Regex</string>
-    <string name="lesson1_text">A regular expression (regex) is a sequence of
-        characters that defines a search pattern. This pattern can be checked
-        against text, to find matches.\n\nThese pattens can be very literal.
-        If you were looking for Hello, you would use the pattern
-        "Hello".</string>
-    <string name="lesson1_pattern">Hello</string>
-    <string-array name="lesson1_examples">
+
+    <string-array name="lesson_titles">
+        <item>Welcome to Regex</item>
+        <item>The OR Operator</item>
+        <item>More with OR</item>
+        <item>Dot Operator</item>
+        <item>Character Classes</item>
+        <item>Ranges</item>
+        <item>Digits</item>
+        <item>Whitespace</item>
+        <item>Start of a Line</item>
+        <item>End of a Line</item>
+        <item>Word Boundaries</item>
+        <item>Repetitions</item>
+        <item>One or More</item>
+        <item>Optional Groups</item>
+        <item>Nested Repetitions</item>
+        <item>Repeat X Times</item>
+        <item>Repeat in Range</item>
+        <item>Repeat with Caution</item>
+        <item>Backreferences</item>
+        <item>Escape Character</item>
+    </string-array>
+
+    <!-- Lessons are in the format: text, pattern, exampleArray -->
+    <string-array name="lesson_text">
+        <!-- Lesson 1 -->
+        <item>A regular expression (regex) is a sequence of characters that
+            defines a search pattern. This pattern can be checked against text,
+            to find matches.\n\nThese pattens can be very literal. If you were
+            looking for Hello, you would use the pattern "Hello".</item>
+        <item>Hello</item>
         <item>Hello World!</item>
-    </string-array>
 
-    <!-- Lesson 2 -->
-    <string name="lesson2_title">The OR Operator</string>
-    <string name="lesson2_text">What makes regex so powerful is that it is
-        more flexible than what you\'d use for a Ctrl+F search, and special
-        characters can be used to find exactly what you\'re looking for.\n\n
-        The \'|\' character (the pipe character) to match one pattern OR another
-        pattern. (A|B) would match an A OR a B.</string>
-    <string name="lesson2_pattern">(Regex|RegEx)</string>
-    <string-array name="lesson2_examples">
+        <!-- Lesson 2 -->
+        <item>What makes regex so powerful is that it is more flexible than
+            what you\'d use for a Ctrl+F search, and special characters can be
+            used to find exactly what you\'re looking for.\n\nThe \'|\'
+            character (the pipe character) to match one pattern OR another
+            pattern. (A|B) would match an A OR a B.</item>
+        <item>(Regex|RegEx)</item>
         <item>RegEx</item>
-    </string-array>
 
-    <!-- Lesson 3 -->
-    <string name="lesson3_title">More with OR</string>
-    <string name="lesson3_text">Expressions with the \'|\' character can also
-        be used as part of larger pattern.</string>
-    <string name="lesson3_pattern">The answer to (life|the universe|everything)
-        is 42.</string>
-    <string-array name="lesson3_examples">
+
+        <!-- Lesson 3 -->
+        <item>Expressions with the \'|\' character can also be used as part of
+            a larger pattern.</item>
+        <item>The answer to (life|the universe|everything) is 42.</item>
         <item>The answer to life is 42.</item>
-    </string-array>
 
-    <!-- Lesson 4 -->
-    <string name="lesson4_title">Dot Operator</string>
-    <string name="lesson4_text">For even more flexibility, use \'.\' to match
-        all possible characters except a newline character (the unseen
-        character added when you press the enter button).</string>
-    <string name="lesson4_pattern">s.ack</string>
-    <string-array name="lesson4_examples">
-        <item>smack</item>
-        <item>stack</item>
-        <item>slack</item>
-    </string-array>
+        <!-- Lesson 4 -->
+        <item>For even more flexibility, use \'.\' to match all possible
+            characters except a newline character (the unseen character added
+            when you press the enter button).</item>
+        <item>s.ack</item>
+        <item>smack~stack~slack</item>
 
-    <!-- Lesson 5 -->
-    <string name="lesson5_title">Character Classes</string>
-    <string name="lesson5_text">If you want to match one of a given set of
-        characters, write each of the characters between square brackets, to
-        create a character class. For example, use [aeiou] to match any one
-        vowel.</string>
-    <string name="lesson5_pattern">[aeiou]</string>
-    <string-array name="lesson5_examples">
+        <!-- Lesson 5 -->
+        <item>If you want to match one of a given set of characters, write each
+            of the characters between square brackets, to create a character
+            class. For example, use [aeiou] to match any one vowel.</item>
+        <item>[aeiou]</item>
         <item>Vowels</item>
-    </string-array>
 
-    <!-- Lesson 6 -->
-    <string name="lesson6_title">Ranges</string>
-    <string name="lesson6_text">Matching a character from a given range can be
-        made simpler. Character classes can contain ranges of letters. For
-        example, [b-g] would match any lowercase letter from b to g. One
-        character class can contain more than one range. [b-gB-G] matches all
-        letters from b to g, regardless of case.</string>
-    <string name="lesson6_pattern">[b-gB-G]</string>
-    <string-array name="lesson6_examples">
-        <item>felines</item>
-        <item>HI THERE!</item>
-    </string-array>
+        <!-- Lesson 6 -->
+        <item>Matching a character from a given range can be made simpler.
+            Character classes can contain ranges of letters. For example, [b-g]
+            would match any lowercase letter from b to g. One character class
+            can contain more than one range. [b-gB-G] matches all letters from
+            b to g, regardless of case.</item>
+        <item>[b-gB-G]</item>
+        <item>felines~HI THERE!</item>
 
-    <!-- Lesson 7 -->
-    <string name="lesson7_title">Digits</string>
-    <string name="lesson7_text">The \\d special character is another easy way
-        to match digits.\n\nNote: \\d is very similar to [0-9], but also
-        matches digits from other number systems. This is useful when analyzing
-        text in other languages.</string>
-    <string name="lesson7_pattern">\\d</string>
-    <string-array name="lesson7_examples">
+        <!-- Lesson 7 -->
+        <item>The \\d special character is another easy way to match
+            digits.\n\nNote: \\d is very similar to [0-9], but also matches
+            digits from other number systems. This is useful when analyzing
+            text in other languages.</item>
+        <item>\\d</item>
         <item>You\'ve made it to Lesson 7!</item>
-    </string-array>
 
-    <!-- Lesson 8 -->
-    <string name="lesson8_title">Whitespace</string>
-    <string name="lesson8_text">The \\s character matches whitespace
-        characters. This includes spaces and tabs. The \\S character matches
-        everything that is NOT a whitespace character.\n\nNote: Whitespace
-        characters also include newlines, carriage returns, and form feed
-        characters.</string>
-    <string name="lesson8_pattern">\\S\\s\\S</string>
-    <string-array name="lesson8_examples">
+        <!-- Lesson 8 -->
+        <item>The \\s character matches whitespace characters. This includes
+            spaces and tabs. The \\S character matches everything that is NOT a
+            whitespace character.\n\nNote: Whitespace characters also include
+            newlines, carriage returns, and form feed characters.</item>
+        <item>\\S\\s\\S</item>
         <item>= )</item>
-    </string-array>
 
-    <!-- Lesson 9 -->
-    <string name="lesson9_title">Start of a Line</string>
-    <string name="lesson9_text">The \'^\' character is used to indicate the
-        start of a line. ^Regex would match lines that start with Regex, but
-        not lines that include Regex somewhere else.</string>
-    <string name="lesson9_pattern">^Regex</string>
-    <string-array name="lesson9_examples">
-        <item>Regex is easy</item>
-        <item>This is Regex</item>
-    </string-array>
+        <!-- Lesson 9 -->
+        <item>The \'^\' character is used to indicate the start of a line.
+            ^Regex would match lines that start with Regex, but not lines that
+            include Regex somewhere else.</item>
+        <item>^Regex</item>
+        <item>Regex is easy~This is Regex</item>
 
-    <!-- Lesson 10 -->
-    <string name="lesson10_title">End of a Line</string>
-    <string name="lesson10_text">The \'$\' character matches the end of a line.
-        For example, cat$ matches lines that end with cat.</string>
-    <string name="lesson10_pattern">cat$</string>
-    <string-array name="lesson10_examples">
-        <item>Copycat</item>
-        <item>Concatenate</item>
-    </string-array>
+        <!-- Lesson 10 -->
+        <item>The \'$\' character matches the end of a line. For example, cat$
+            matches lines that end with cat.</item>
+        <item>cat$</item>
+        <item>Copycat~Concatenate</item>
 
-    <!-- Lesson 11 -->
-    <string name="lesson11_title">Word Boundaries</string>
-    <string name="lesson11_text">The \\b character matches the beginning or end
-        of a word, also known as a word boundary. These word boundaries can be
-        the beginning of a line, end of a line, or whitespace character.</string>
-    <string name="lesson11_pattern">\\bcat\\b</string>
-    <string-array name="lesson11_examples">
-        <item>cat</item>
-        <item>catalina</item>
-        <item>concatenate</item>
+        <!-- Lesson 11 -->
+        <item>The \\b character matches the beginning or end of a word, also
+            known as a word boundary. These word boundaries can be the beginning
+            of a line, end of a line, or whitespace character.</item>
+        <item>\\bcat\\b</item>
+        <item>cat~catalina~concatenate</item>
+
+        <!-- Lesson 12 -->
+        <item>The * character is used to match zero or more occurrences of the
+        previous group. Just place the group you intend to match in parentheses,
+        and follow it with the * character.</item>
+        <item>Hello(.)*</item>
+        <item>Hello~Hello...</item>
+
+        <!-- Lesson 13 -->
+        <item>The + character is used to match one or more occurrences of the
+        previous group.</item>
+        <item>Y(a)+wn</item>
+        <item>Yawn~Yaaawn~Ywn</item>
+
+        <!-- Lesson 14 -->
+        <item>The ? character is used to match a group that may or may not be
+        present. (? matches one or zero occurrences of the previous group.)</item>
+        <item>//b(Prince )?Harry//b</item>
+        <item>~Prince Harry~Harry~Prince Prince Harry</item>
+
+        <!-- Lesson 15 -->
+        <item>The repeated groups being searched for using a special character
+        are not limited to only words. They can also be regex expressions.</item>
+        <item>([?!])+</item>
+        <item>What??!?</item>
+
+        <!-- Lesson 16 -->
+        <item>Use braces to specify an exact number of repetitions.</item>
+        <item>(hello){3}</item>
+        <item>hellohellohello~hello</item>
     </string-array>
 
 </resources>
